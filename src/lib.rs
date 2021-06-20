@@ -7,6 +7,15 @@
 //!     println!("{}", meddl_translate::translate("Hallo"));
 //! }
 //! ```
+//!
+//! # Examples
+//!
+//! ```shell
+//! $ cargo run --example hallo
+//! ```
+//! ```shell
+//! $ cargo run --example langer-text
+//! ```
 
 use serde_json::Value;
 use std::fs;

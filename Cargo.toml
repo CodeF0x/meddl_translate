@@ -11,6 +11,8 @@ homepage = "https://github.com/CodeF0x/meddl_translate/"
 
 include = ["./de-oger.json"]
 
+[lib]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
