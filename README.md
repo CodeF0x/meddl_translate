@@ -9,3 +9,12 @@ fn main() {
   println!("{}", meddl_translate::translate("Hallo"));
 }
 ```
+
+There's also examples available:
+
+```shell
+$ cargo run --example hallo
+```
+```shell
+$ cargo run --example langer-text
+```
