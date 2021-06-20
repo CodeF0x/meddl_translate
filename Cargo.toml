@@ -3,6 +3,8 @@ name = "meddl_translate"
 version = "0.1.0"
 edition = "2018"
 
+include = ["./de-oger.json"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
