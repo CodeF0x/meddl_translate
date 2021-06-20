@@ -1,3 +1,13 @@
+//! Translate German to (almost) perfect Meddlfrängisch.
+//!
+//! # Usage
+//!
+//! ```
+//! fn main() {
+//!     println!("{}", meddl_translate::translate("Hallo"));
+//! }
+//! ```
+
 use serde_json::Value;
 use std::fs;
 use regex::Regex;
@@ -8,6 +18,15 @@ fn parse_translation() -> Option<Value> {
     Some(serde_json::from_str(&translation_string).expect("Could not parse translation."))
 }
 
+/// This function translates a string slice from German to Meddlfrängisch.
+///
+/// # Example
+///
+/// ```
+/// fn main() {
+///     let meddl_fraengisch = meddl_translate::translate("Hallo Welt");
+/// }
+/// ```
 pub fn translate(original: &str) -> String {
     let words: Vec<&str> = original.split(" ").collect();
     let translation: Value = parse_translation().unwrap();
