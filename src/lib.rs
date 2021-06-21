@@ -26,12 +26,11 @@
 //! You need to use Rust nightly for running the benchmark.
 
 use serde_json::Value;
-use std::fs;
 use regex::Regex;
 use rand::Rng;
 
 fn parse_translation() -> Option<Value> {
-    let translation_string = fs::read_to_string("./de-oger.json").expect("Could not read translation file.");
+    let translation_string = include_str!("de-oger.json");
     Some(serde_json::from_str(&translation_string).expect("Could not parse translation."))
 }
 

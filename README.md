@@ -18,3 +18,6 @@ $ cargo run --example hallo
 ```shell
 $ cargo run --example langer-text
 ```
+
+# Translations file
+A dictionary can be found in the `src` directory.

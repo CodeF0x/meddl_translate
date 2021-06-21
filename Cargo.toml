@@ -11,14 +11,14 @@ homepage = "https://github.com/CodeF0x/meddl_translate/"
 
 # Turns out that when you use "include", you need to list all relevant files for compiling and not just
 # one single file you want to include in the binary.
-include = [
-    "./de-oger.json",
-    "src/lib.rs",
-    "examples/**/*",
-    "benches/*/**",
-    "Cargo.toml",
-    "README.md"
-]
+# include = [
+#    "./de-oger.json",
+#    "src/lib.rs",
+#    "examples/**/*",
+#    "benches/*/**",
+#    "Cargo.toml",
+#    "README.md"
+#]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
