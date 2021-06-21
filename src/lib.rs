@@ -16,6 +16,14 @@
 //! ```shell
 //! $ cargo run --example langer-text
 //! ```
+//!
+//! # Benchmark
+//!
+//! ```shell
+//! $ cargo bench
+//! ```
+//!
+//! You need to use Rust nightly for running the benchmark.
 
 use serde_json::Value;
 use std::fs;
