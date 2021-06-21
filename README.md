@@ -1,6 +1,6 @@
 # meddl_translate
 
-Translates German to Meddlfrängisch. If you don't know what this is, this is not for you.
+Translates German to Meddlfrängisch. If you don't know what that is, this is not for you.
 
 Example:
 
