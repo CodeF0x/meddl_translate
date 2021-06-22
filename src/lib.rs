@@ -116,8 +116,7 @@ fn translate_punctuation<'a>(punctuation: &'a str, translation: &'a Value) -> &'
             let dot_pool = translation["dot"]
                 .as_array()
                 .unwrap();
-            let length = dot_pool.len();
-            let random = rand::thread_rng().gen_range(0..length);
+            let random = get_random_index(dot_pool);
             let translated_dot = dot_pool[random]
                 .as_str()
                 .unwrap();
@@ -128,8 +127,7 @@ fn translate_punctuation<'a>(punctuation: &'a str, translation: &'a Value) -> &'
             let exclamation_mark_pool = translation["exclamationMark"]
                 .as_array()
                 .unwrap();
-            let length = exclamation_mark_pool.len();
-            let random = rand::thread_rng().gen_range(0..length);
+            let random = get_random_index(exclamation_mark_pool);
             let translated_exclamation_mark = exclamation_mark_pool[random]
                 .as_str()
                 .unwrap();
@@ -140,8 +138,7 @@ fn translate_punctuation<'a>(punctuation: &'a str, translation: &'a Value) -> &'
             let question_mark_pool = translation["questionMark"]
                 .as_array()
                 .unwrap();
-            let length = question_mark_pool.len();
-            let random = rand::thread_rng().gen_range(0..length);
+            let random = get_random_index(question_mark_pool);
             let translated_question_mark = question_mark_pool[random]
                 .as_str()
                 .unwrap();
@@ -160,4 +157,9 @@ fn translate_quotation_marks(word: &str, translation: &Value) -> String {
         1);
     }
     String::from(word)
+}
+
+fn get_random_index(vec: &Vec<Value>) -> usize {
+    let len = vec.len();
+    rand::thread_rng().gen_range(0..len)
 }
