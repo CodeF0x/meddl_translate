@@ -12,7 +12,8 @@
       "Mastoger",
       "Suppengmogo",
       "Speggi",
-      "Vierteltonner"
+      "Vierteltonner",
+      "Die 7 Todsünden in Person"
     ],
     "Rainerle": [
       "Ruinerle",
@@ -30,6 +31,7 @@
     "Winkler": [
       "Wongl",
       "Winggl",
+      "Wingler",
       "Lard",
       "Bummsdi",
       "Golem",
@@ -60,7 +62,8 @@
       "Vierteltonner",
       "Animewelt Lord",
       "Diabetesdumbo",
-      "selbständiger Schichtarbeiter"
+      "selbständiger Schichtarbeiter",
+      "Flugechsenfetischist"
     ],
     "Lord": [
       "Lard",
@@ -74,7 +77,8 @@
       "Butter Golem",
       "Oger",
       "Suppengmogo",
-      "Arbeitslord"
+      "Arbeitslord",
+      "Medienmogul"
     ],
     "Video": [
       "fideo",
@@ -111,6 +115,24 @@
       "Schimmelschanze",
       "Ruine"
     ],
+    "Stuhl": [
+      "Stuhl",
+      "Zarensofa",
+      "Gamingstuhl"
+    ],
+    "Discord":[
+      "Lord Korea"
+    ],
+    "Auto": [
+      "Audo der wo fährt",
+      "Rudi A4",
+      "Ford Mondeo",
+      "Meddlmobil",
+      "Audo"
+    ],
+    "A4": [
+      "Rudi A4"
+    ],
     "alter": [
       "alda",
       "alla "
@@ -128,6 +150,12 @@
       "Meddl loide",
       "Servus und wilkommen",
       "Gonitschiwa"
+    ],
+    "Tschüss": [
+      "Tschö tschö"
+    ],
+    "tschüss": [
+      "tschö tschö"
     ],
     "leute": [
       "loide"
@@ -160,7 +188,9 @@
       "Aggst"
     ],
     "Polizei": [
-      "Bolizei"
+      "Bolizei",
+      "PINEA",
+      "Bolizei, die ihren Tschob ned machd"
     ],
     "Popcorn": [
       "Bobgorn"
@@ -192,6 +222,10 @@
     "nazi": [
       "kaggnazi"
     ],
+    "Nazis": [
+      "Kaggnazis",
+      "NSBM-Szene (Nadsionalsozialisdische Blägg Meddl Szene)"
+    ],
     "Rudi": [
       "Rudi",
       "Rudi aus Buddeln",
@@ -201,7 +235,8 @@
     "Rita": [
       "Rita",
       "Riter",
-      "Rita aus Weiden"
+      "Rita aus Weiden",
+      "Rabenmutter"
     ],
     "Ramona": [
       "Ramona",
@@ -244,10 +279,14 @@
       "Tschobb"
     ],
     "Hater": [
-      "Haider"
+      "Haider",
+      "Häider",
+      "Kagghaider"
     ],
     "hater": [
-      "Haider"
+      "Haider",
+      "Häider",
+      "Kagghaider"
     ],
     "Hate": [
       "Haid"
@@ -271,7 +310,8 @@
       "bonklix"
     ],
     "jetzt": [
-      "etzadla"
+      "etzadla",
+      "jetzala"
     ],
     "ja?": [
       "und weida?"
@@ -283,13 +323,15 @@
       "und weida?"
     ],
     "Geld": [
-      "Barrne"
+      "Barrne",
+      "Koooohlen"
     ],
     "Euro": [
       "Barrne €"
     ],
     "geld ": [
-      "Barrne"
+      "Barrne",
+      "Koooohlen"
     ],
     "euro ": [
       "Barrne €"
@@ -324,32 +366,33 @@
       "gnadenlos in's gsicht nei gedrüggt"
     ],
     "fressen": [
-      "neinschÃ¼ren",
+      "neinschüren",
       "reinnrendern",
       "neistopfen",
       "neimeddln"
     ],
     "gefressen": [
-      "neigschÃ¼rt",
+      "neigschürt",
       "neigerendert",
       "neigstopft",
       "neimeddld"
     ],
     "essen": [
-      "neinschÃ¼ren",
+      "neinschüren",
       "reinnrendern",
       "neistopfen",
       "neimeddln",
-      "in's gsicht drÃ¼ggen",
-      "gnadenlos in's gsicht drÃ¼ggen"
+      "in's gsicht drüggen",
+      "gnadenlos in's gsicht drüggen",
+      "ins Gesichtsarschloch drüggen"
     ],
     "isst": [
       "neirenderd",
-      "neischÃ¼rd",
+      "neischürd",
       "neistopft",
       "neimeddlt",
-      "in's gsicht drÃ¼ggt",
-      "gnadenlos in's gsicht drÃ¼ggt"
+      "in's gsicht drüggt",
+      "gnadenlos in's gsicht drüggt"
     ],
     "Angst": [
       "wie se immer zuggen"
@@ -384,7 +427,9 @@
       "schweizer Daschenguml"
     ],
     "Freunde": [
-      "ihr Wahnsinnichen"
+      "ihr Wahnsinnichen",
+      "Gumbls, die Neonazis sind",
+      "30 Sginhäds"
     ],
     "Penis": [
       "Speer",
@@ -395,7 +440,7 @@
     "penis": [
       "Speer",
       "Pimml",
-      "SpÃ¤her",
+      "Späher",
       "pensi"
     ],
     "Katana": [
@@ -468,7 +513,7 @@
       "mol",
       "moal"
     ],
-    "einma ": [
+    "einmal": [
       "amol ",
       "amoal "
     ],
@@ -486,6 +531,12 @@
     ],
     "Raus": [
       "Naus"
+    ],
+    "werfen": [
+      "schmaßen"
+    ],
+    "Werfen":[
+      "Schmaßen"
     ],
     "wie heißt du": [
       "anaddanowanaiwa Nandeska"
@@ -505,11 +556,13 @@
     ],
     "Manieren": [
       "Alda kein Erziehung genossen?",
-      "Eure Eltern wÃ¼rden sich schÃ¤men"
+      "Eure Eltern würden sich schämen",
+      "Wer hat euch eigentlich Gehirn beigebracht?"
     ],
     "manieren": [
       "Alda kein Erziehung genossen?",
-      "Eure Eltern wÃ¼rden sich schÃ¤men"
+      "Eure Eltern würden sich schämen",
+      "Wer hat euch eigentlich Gehirn beigebracht?"
     ],
     "Franken": [
       "Meddlfranggen"
@@ -542,10 +595,10 @@
       "jaboanisch"
     ],
     "Früher": [
-      " mit 4 mit'm Vadda im Wald "
+      "mit 4 mit'm Vadda im Wald"
     ],
     "früher": [
-      " mit 4 mit'm Vadda im Wald "
+      "mit 4 mit'm Vadda im Wald"
     ],
     "Vater": [
       "Vadder"
@@ -554,7 +607,7 @@
       "Life is stranger"
     ],
     "Kleinstadt": [
-      "KlingelstÃ¤nder"
+      "Klingelständer"
     ],
     "speichern": [
       "in Gimb neispeichern"
@@ -574,24 +627,27 @@
       "in Gimb neigrendert"
     ],
     "arbeitet": [
-      "Schneidet, rendert, lÃ¤d-hoch",
+      "Schneidet, rendert, läd-hoch",
       "Frisst, Wiggst, Zockt",
       "Led's plaiet"
     ],
     "Arbeit": [
       "Schneiden, rendern, hochladen",
       "Fressne, Wiggsne, Zockne",
-      "Led's plaien"
+      "Led's plaien",
+      "Abbeid"
     ],
     "arbeit": [
       "schneiden, rendern, hochladen",
       "fressne, Wiggsne, Zockne",
-      "Led's plaien"
+      "Led's plaien",
+      "abbeid"
     ],
     "arbeiten": [
       "schneiden, rendern, hochladen",
       "fressne, Wiggsne, Zockne",
-      "Led's plain"
+      "Led's plain",
+      "abbeidn"
     ],
     "besonders": [
       "höchste Wesne"
@@ -601,6 +657,12 @@
     ],
     "gott": [
       "Dreche himself"
+    ],
+    "Fan": [
+      "Drachi"
+    ],
+    "fan": [
+      "drachi"
     ],
     "Wahnsinnig": [
       "Wahnsinnicn"
@@ -681,6 +743,15 @@
     "nicht": [
       "ned"
     ],
+    "falsch": [
+      "das ist a) richtig und b) falsch"
+    ],
+    "verstehen": [
+      "Ich verstehe schon was ihr meint, verstehe jetzt aber ned was ihr meint"
+    ],
+    "verstehe": [
+      "Ich verstehe schon was ihr meint, verstehe jetzt aber ned was ihr meint"
+    ],
     "auf": [
       "uff"
     ],
@@ -699,7 +770,7 @@
     "Bombe": [
       "risiche Bombe"
     ],
-    "BÃ¶ller": [
+    "Böller": [
       "risiche Bombe"
     ],
     "Sprengstoff": [
@@ -772,10 +843,10 @@
       "gombjuta"
     ],
     "Challenge": [
-      "SchÃ¤lensch"
+      "Schälensch"
     ],
     "challenge": [
-      "schÃ¤lensch"
+      "schälensch"
     ],
     "Details": [
       "Deteis"
@@ -973,6 +1044,18 @@
     "You-Tube": [
       "Jutjub"
     ],
+    "Playbutton": [
+      "Blebaddn"
+    ],
+    "playbutton": [
+      "Blebaddn"
+    ],
+    "Play Button": [
+      "Blebaddn"
+    ],
+    "play button": [
+      "Blebaddn"
+    ],
     "typ": [
       "düb"
     ],
@@ -995,11 +1078,14 @@
       "Schlank (Du meintest wohl fett)",
       "hahaha"
     ],
+    "fertig": [
+      "ferdich"
+    ],
     "Gehirn": [
       "Hörn"
     ],
     "gehirn": [
-      "hÃ¶rn"
+      "hörn"
     ],
     "Rewe": [
       "Zwingel"
@@ -1120,6 +1206,16 @@
     "Halt's Maul": [
       "HALT *atmen* DEINE *atmen* FRESSE"
     ],
+    "schreit": [
+      "*unverständliches Gebrüllheule*",
+      "schreit",
+      "schreit"
+    ],
+    "schreien": [
+      "*unverständliches Brüllheulen*",
+      "schreien",
+      "schreien"
+    ],
     "tatsächlich": [
       "tazächlich",
       "tadzächlich",
@@ -1140,6 +1236,12 @@
     ],
     "Mund": [
       "Schlund"
+    ],
+    "hart": [
+      "hadd"
+    ],
+    "harte": [
+      "hadde"
     ]
   },
   "questionMark": [
