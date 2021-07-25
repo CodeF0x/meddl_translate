@@ -272,6 +272,9 @@
       "can you not hear",
       "hear you not"
     ],
+    "darf": [
+      "derf"
+    ],
     "Job": [
       "Tschobb"
     ],
@@ -311,7 +314,8 @@
     ],
     "jetzt": [
       "etzadla",
-      "jetzala"
+      "jetzala",
+      "jetzadla"
     ],
     "ja?": [
       "und weida?"
@@ -1242,6 +1246,32 @@
     ],
     "harte": [
       "hadde"
+    ],
+    "denn":[
+      "den"
+    ],
+    "T-Shirt": [
+      "Shörter"
+    ],
+    "Shirt": [
+      "Shört"
+    ],
+    "einige": [
+      "einiche"
+    ],
+    "einigen": [
+      "einichen"
+    ],
+    "meinem": [
+      "mei'm"
+    ],
+    "runter": [
+      "runder",
+      "rundä"
+    ],
+    "Runter": [
+      "Runder",
+      "Rundä"
     ]
   },
   "questionMark": [
@@ -1267,6 +1297,7 @@
     " alda.",
     " tadsächlich sogar.",
     ". Etzala",
+    " und alles.",
     ".",
     ".",
     ".",
@@ -1317,5 +1348,9 @@
     "k": "g",
     "K": "G"
   },
-  "quotationMark": "*ferstellt Stimme:* \"Äh, "
+  "quotationMark": "*ferstellt Stimme:* \"Äh, ",
+  "interlude": "ämmmmäääää... *rendert erst mal für 5 bis 10 Sekunden* ...",
+  "ignored": [
+    "den"
+  ]
 }
