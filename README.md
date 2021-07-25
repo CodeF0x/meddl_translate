@@ -13,10 +13,10 @@ fn main() {
 There's also other examples available:
 
 ```shell
-$ cargo run --example hallo
+$ cargo run --example hello
 ```
 ```shell
-$ cargo run --example langer-text
+$ cargo run --example long-text
 ```
 
 ### Exceptions
