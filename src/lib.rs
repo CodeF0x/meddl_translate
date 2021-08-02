@@ -17,7 +17,7 @@
 //! $ cargo run --example long-text
 //! ```
 //!
-//! # Excluding words from being translation
+//! # Excluding words from being translated
 //!
 //! ```json
 //! "ignored": [
