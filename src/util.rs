@@ -22,3 +22,14 @@ pub(crate) fn get_random_index(vec: &Vec<Value>) -> usize {
     let len = vec.len();
     rand::thread_rng().gen_range(0..len)
 }
+
+#[cfg(feature = "interlude")]
+pub(crate) fn is_one_percent_chance() -> bool {
+    let random = rand::thread_rng().gen_range(0..100);
+
+    if random == 1 {
+        return true;
+    }
+
+    false
+}

@@ -44,10 +44,10 @@ mod util;
 use serde_json::Value;
 use regex::Regex;
 use rand::Rng;
+#[cfg(feature = "interlude")]
+use util::{is_ignored_word, get_random_index, is_one_percent_chance};
+#[cfg(not(feature = "interlude"))]
 use util::{is_ignored_word, get_random_index};
-use std::env;
-
-const INTERLUDE_RANDOM_NUMBER: i16 = 225;
 
 fn parse_translation() -> Option<Value> {
     let translation_string = include_str!("de-oger.json");
@@ -79,10 +79,14 @@ pub fn translate(original: &str) -> String {
         word_no_punctuation.push_str(&cow);
 
         let translated_punctuation = translate_punctuation(&punctuation, &translation);
-        let translated_word = translate_word(&word_no_punctuation, &translation);
-        let translated_word_with_interlude: String = add_interlude(&translated_word, &translation);
+        let mut translated_word = translate_word(&word_no_punctuation, &translation);
 
-        meddl.push_str(&translated_word_with_interlude);
+        #[cfg(feature = "interlude")]
+        if is_one_percent_chance() {
+            translated_word = add_interlude(&translated_word, &translation);
+        }
+
+        meddl.push_str(&translated_word);
         meddl.push_str(&translated_punctuation);
         meddl.push(' ');
     }
@@ -184,27 +188,17 @@ fn translate_quotation_marks(word: &str, translation: &Value) -> String {
     String::from(word)
 }
 
+#[cfg(feature = "interlude")]
 fn add_interlude(word_to_add_to: &str, translation: &Value) -> String {
-    if let Ok(_value) = env::var("MEDDl_TRANSLATE_INTERLUDE_SET") {
-        return String::from(word_to_add_to);
-    }
-
     let interlude = translation["interlude"]
         .as_str()
         .unwrap();
 
-    let ran = rand::thread_rng().gen_range(0..INTERLUDE_RANDOM_NUMBER);
-
-    return if ran < 2 {
         let word_with_interlude = format!(
             "{}{}",
             word_to_add_to,
             interlude
         );
-        env::set_var("MEDDl_TRANSLATE_INTERLUDE_SET", "true");
 
         word_with_interlude
-    } else {
-        String::from(word_to_add_to)
-    };
 }

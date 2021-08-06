@@ -369,7 +369,8 @@
       "neigstopft",
       "neimeddld",
       "in's gsicht gedrüggd",
-      "gnadenlos in's gsicht nei gedrüggt"
+      "gnadenlos in's gsicht nei gedrüggt",
+      "neischaufelne"
     ],
     "fressen": [
       "neinschüren",
@@ -1030,25 +1031,32 @@
       "Junau"
     ],
     "Youtube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "YouTube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "youtube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "You tube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "You Tube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "You-tube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "You-Tube": [
-      "Jutjub"
+      "Jutjub",
+      "Jutub"
     ],
     "Playbutton": [
       "Blebaddn"
@@ -1317,6 +1325,20 @@
     ],
     "Korrektur": [
       "Korregation"
+    ],
+    "Hagebutte": [
+      "Hagebuddne"
+    ],
+    "Durchfall": [
+      "Flodder Oddo"
+    ],
+    "gesagt": [
+      "gsachd",
+      "gsachd ghabbt"
+    ],
+    "Gesagt": [
+      "Gsachtd",
+      "Gsachd ghabbt"
     ]
   },
   "questionMark": [
@@ -1343,6 +1365,7 @@
     " tadsächlich sogar.",
     ". Etzala",
     " und alles.",
+    ". Pass auf,",
     ".",
     ".",
     ".",
@@ -1396,6 +1419,9 @@
   "quotationMark": "*ferstellt Stimme:* \"Äh, ",
   "interlude": "ämmmmäääää... *rendert erst mal für 5 bis 10 Sekunden* ...",
   "ignored": [
-    "den"
+    "den",
+    "Italien",
+    "Wien",
+    "Familien"
   ]
 }
