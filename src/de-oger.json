@@ -254,8 +254,8 @@
     "amen": ["OHNE DREGG ALDER"],
     "so ist es": ["OHNE DREGG ALDER"],
     "Stock": ["Sdogg"],
-    "mal": ["mol", "moal"],
-    "einmal": ["amol ", "amoal "],
+    "mal": ["mol", "moal", "amal"],
+    "einmal": ["amol", "amoal", "amal"],
     "Gimp": ["Gimb"],
     "Cola": ["Koler"],
     "cola": ["Koler"],
@@ -569,7 +569,10 @@
     "schon": ["scho'"],
     "einen": ["'nen"],
     "eine": ["'ne"],
-    "Website": ["Webseide"]
+    "Website": ["Webseide"],
+    "von": ["von, von, vonääh"],
+    "am": ["am, am, amääh"],
+    "warten": ["wadden"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
@@ -651,6 +654,9 @@
     "endlich",
     "denkt",
     "denken",
-    "genießen"
+    "genießen",
+    "hoffentlich",
+    "brennen",
+    "niederbrennen"
   ]
 }
