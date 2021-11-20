@@ -576,7 +576,12 @@
     "Corona": ["Goronner", "Goroner", "Gorona-Dema"],
     "Ehre": ["Ähre"],
     "Ehrenmann": ["\"Ährenmann\""],
-    "davon": ["daddavon", "davon"]
+    "davon": ["daddavon", "davon"],
+    "Cum-Control": ["Gumgondrol"],
+    "Cumcontrol": ["Gumgondrol"],
+    "Bondage": ["Bandage"],
+    "gefesselt": ["gebandaged", "gefesselt"],
+    "fesseln": ["bandagen", "fesseln"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
