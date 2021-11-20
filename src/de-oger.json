@@ -572,7 +572,8 @@
     "Website": ["Webseide"],
     "von": ["von", "von", "vonääh"],
     "am": ["am", "am", "amääh"],
-    "warten": ["wadden"]
+    "warten": ["wadden"],
+    "Corona": ["Goronner", "Goroner", "Gorona-Dema"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
