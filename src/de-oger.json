@@ -573,7 +573,10 @@
     "von": ["von", "von", "vonääh"],
     "am": ["am", "am", "amääh"],
     "warten": ["wadden"],
-    "Corona": ["Goronner", "Goroner", "Gorona-Dema"]
+    "Corona": ["Goronner", "Goroner", "Gorona-Dema"],
+    "Ehre": ["Ähre"],
+    "Ehrenmann": ["\"Ährenmann\""],
+    "davon": ["daddavon", "davon"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
