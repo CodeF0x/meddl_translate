@@ -157,7 +157,7 @@
     "dumm": ["brainschaden"],
     "Energy": ["Enertschie"],
     "energy": ["enertschie"],
-    "ein": ["a", "oa"],
+    "ein": ["a", "ein"],
     "fit": ["fidd"],
     "nicht hören": [
       "Ich hör dich ned du Spack, ich hab Kopfhörer auf",
@@ -173,7 +173,6 @@
     "hate": ["Haid"],
     "zerstören": ["zermeddln"],
     "zerstört": ["zermeddld"],
-    "kann": ["koa"],
     "Boneclinks": ["Bonklix"],
     "boneclinks": ["bonklix"],
     "jetzt": ["etzadla", "jetzala", "jetzadla", "jetzad", "etzad"],
@@ -254,8 +253,8 @@
     "amen": ["OHNE DREGG ALDER"],
     "so ist es": ["OHNE DREGG ALDER"],
     "Stock": ["Sdogg"],
-    "mal": ["mol", "moal", "amal"],
-    "einmal": ["amol", "amoal", "amal"],
+    "mal": ["amal"],
+    "einmal": ["amal"],
     "Gimp": ["Gimb"],
     "Cola": ["Koler"],
     "cola": ["Koler"],
@@ -666,6 +665,7 @@
     "genießen",
     "hoffentlich",
     "brennen",
-    "niederbrennen"
+    "niederbrennen",
+    "kann"
   ]
 }
