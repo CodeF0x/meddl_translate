@@ -79,7 +79,11 @@ pub fn translate(original: &str) -> String {
         word_no_punctuation.push_str(&cow);
 
         let translated_punctuation = translate_punctuation(&punctuation, &translation);
+
+        #[cfg(feature = "interlude")]
         let mut translated_word = translate_word(&word_no_punctuation, &translation);
+        #[cfg(not(feature = "interlude"))]
+        let translated_word = translate_word(&word_no_punctuation, &translation);
 
         #[cfg(feature = "interlude")]
         if is_one_percent_chance() {
