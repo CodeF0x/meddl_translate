@@ -47,6 +47,7 @@ use regex::{Regex};
 use util::{is_ignored_word, get_random_index, is_one_percent_chance, capitalize_word};
 #[cfg(not(feature = "interlude"))]
 use util::{is_ignored_word, get_random_index, capitalize_word};
+use wasm_bindgen::prelude::*;
 
 fn parse_translation() -> Option<Value> {
     let translation_string = include_str!("de-oger.json");
@@ -62,6 +63,7 @@ fn parse_translation() -> Option<Value> {
 ///     let meddl_fraengisch = meddl_translate::translate("Hallo Welt");
 /// }
 /// ```
+#[wasm_bindgen]
 pub fn translate(original: &str) -> String {
     if original.len() == 0 {
         return String::from("");
