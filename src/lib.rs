@@ -48,6 +48,7 @@ use rand::Rng;
 use util::{is_ignored_word, get_random_index, is_one_percent_chance};
 #[cfg(not(feature = "interlude"))]
 use util::{is_ignored_word, get_random_index};
+use wasm_bindgen::prelude::*;
 
 fn parse_translation() -> Option<Value> {
     let translation_string = include_str!("de-oger.json");
@@ -63,6 +64,7 @@ fn parse_translation() -> Option<Value> {
 ///     let meddl_fraengisch = meddl_translate::translate("Hallo Welt");
 /// }
 /// ```
+#[wasm_bindgen]
 pub fn translate(original: &str) -> String {
     let words: Vec<&str> = original.split(" ").collect();
     let translation: Value = parse_translation().unwrap();

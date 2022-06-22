@@ -22,10 +22,14 @@ homepage = "https://github.com/CodeF0x/meddl_translate/"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [features]
-interlude = []
 
 [dependencies]
+wasm-bindgen = "0.2.79"
+getrandom = { version = "0.2.5", features = ["js"] }
 rand = "0.8.4"
 regex = "1"
 serde_json = "1.0.64"
