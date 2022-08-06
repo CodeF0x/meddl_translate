@@ -364,7 +364,7 @@
     ],
     "auf": ["uff"],
     "ist er": ["issa"],
-    "wieder": ["widda"],
+    "wieder": ["widda", "scho widder", "widde"],
     "Pizza": ["Piddsa"],
     "pizza": ["piddsa"],
     "Bombe": ["risiche Bombe"],
@@ -581,7 +581,13 @@
     "Bondage": ["Bandage"],
     "gefesselt": ["gebandaged", "gefesselt"],
     "fesseln": ["bandagen", "fesseln"],
-    "Kindergarten": ["Kindergaddn"]
+    "Kindergarten": ["Kindergaddn"],
+    "deren": ["derna", "deren erna", "derra", "deren"],
+    "gegen": ["gecha", "gecher"],
+    "Situation": ["inderessande ẞidduadsion", "ẞidduadsion"],
+    "Schwachsinn": ["Gschmarre"],
+    "ist": ["isd", "is'"]
+
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
