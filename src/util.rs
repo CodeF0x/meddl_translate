@@ -1,8 +1,8 @@
 use serde_json::Value;
 use rand::Rng;
 
-pub(crate) fn is_ignored_word(word: &str, ignored_words: &Value) -> bool {
-    let ignored_words = ignored_words
+pub(crate) fn is_ignored_word(word: &str, translation: &Value) -> bool {
+    let ignored_words = translation["ignored"]
         .as_array()
         .unwrap();
 

@@ -587,7 +587,10 @@
     "gegen": ["gecha", "gecher"],
     "Situation": ["inderessande ẞidduadsion", "ẞidduadsion"],
     "Schwachsinn": ["Gschmarre"],
-    "ist": ["isd", "is'"]
+    "ist": ["isd", "is'"],
+    "denn": ["den"],
+    "Denn": ["Denn"],
+    "das": ["das", "des"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
   "exclamationMark": [
@@ -615,11 +618,6 @@
     "."
   ],
   "twistedChars": {
-    "en": "ne",
-    "en.": "ne.",
-    "en?": "ne?",
-    "en!": "ne!",
-    "en,": "ne,",
     "tz": "ds",
     "tel": "dl",
     "tel.": "dl.",
@@ -661,20 +659,17 @@
   },
   "quotationMark": "*ferstellt Stimme:* \"Äh, ",
   "interlude": "ämmmmäääää... *rendert erst mal für 5 bis 10 Sekunden* ...",
+  "en": {
+    "en": "ne",
+    "en.": "ne.",
+    "en?": "ne?",
+    "en!": "ne!",
+    "en,": "ne,",
+    "ien": "ien",
+    "nen": "nene"
+  },
   "ignored": [
-    "den",
-    "Italien",
-    "Wien",
-    "Familien",
-    "endlich",
-    "denkt",
-    "denken",
-    "genießen",
-    "hoffentlich",
-    "brennen",
-    "niederbrennen",
     "kann",
-    "Argument",
-    "Argumente"
+    "den"
   ]
 }

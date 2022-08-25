@@ -42,7 +42,7 @@
 mod util;
 
 use serde_json::Value;
-use regex::Regex;
+use regex::{Regex};
 use rand::Rng;
 #[cfg(feature = "interlude")]
 use util::{is_ignored_word, get_random_index, is_one_percent_chance};
@@ -99,9 +99,9 @@ pub fn translate(original: &str) -> String {
 }
 
 fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
-    let word = translate_quotation_marks(word, translation);
+    let mut word = translate_quotation_marks(word, translation);
 
-    if is_ignored_word(&word, &translation["ignored"]) {
+    if is_ignored_word(&word, &translation) {
         return word;
     }
 
@@ -115,32 +115,64 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
         let translated_word = possible_translations[random]
             .as_str()
             .unwrap_or(&word);
-        return String::from(translated_word);
+        word = String::from(translated_word);
     } else {
-        /* !!!
-           "twistedChars" is an object that contains the char combinations that
-           need to be replaced as a key, e. g. "en", "ck", etc.
-           "array" in the loop below is a tuple of the key, e. g. "en" and value
-           that is the translation, e. g. "ne".
-           !!!
-         */
-        let twisted_chars = translation["twistedChars"]
-            .as_object()
-            .unwrap();
+        word = twist_chars(&word, &translation);
+        
+    }
+    word = twist_en(&word, translation);
 
-        for (_key, array) in twisted_chars.iter().enumerate() {
-            let charset = array.0;
-            if word.contains(charset) {
-                let translated_word = word
-                    .replace(charset, array.1
-                        .as_str()
-                        .unwrap(),
-                    );
-                return translated_word;
-            }
+    String::from(&word)
+}
+
+fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
+    let twisted_chars = translation["twistedChars"]
+    .as_object()
+    .unwrap();
+
+    for (_key, array) in twisted_chars.iter().enumerate() {
+        let key = array.0;
+        if word.contains(key) {
+            let translated_word = word
+                .replace(key, array.1
+                    .as_str()
+                    .unwrap(),
+                );
+
+
+            return translated_word;
         }
     }
-    String::from(&word)
+
+    String::from(word)
+}
+
+fn twist_en<'a>(word: &'a str, translation: &'a Value) -> String {
+    let mut twisted = String::from(word);
+
+    // do antoher check, because in rare cases, a already translated word coming in can form an ignored word
+    if is_ignored_word(&twisted, translation) {
+        return twisted;
+    }
+
+    let ens = translation["en"]
+        .as_object()
+        .unwrap();
+
+    for (_key, array) in ens.iter().enumerate() {
+        let to_replace = array.0;
+        if word.ends_with(to_replace) {
+            let position = word.rfind(to_replace).unwrap();
+
+            twisted
+                .replace_range(position..word.len(), array.1
+                    .as_str()
+                    .unwrap()
+                )
+        }
+    }
+
+    twisted
 }
 
 fn translate_punctuation<'a>(punctuation: &'a str, translation: &'a Value) -> String {
@@ -187,7 +219,7 @@ fn translate_quotation_marks(word: &str, translation: &Value) -> String {
         return word.replacen("\"", translation["quotationMark"]
             .as_str()
             .unwrap(),
-                             1);
+        1);
     }
     String::from(word)
 }
