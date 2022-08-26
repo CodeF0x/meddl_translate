@@ -43,7 +43,6 @@ mod util;
 
 use serde_json::Value;
 use regex::{Regex};
-use rand::Rng;
 #[cfg(feature = "interlude")]
 use util::{is_ignored_word, get_random_index, is_one_percent_chance};
 #[cfg(not(feature = "interlude"))]
@@ -109,8 +108,7 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
         let possible_translations = translation["translations"][&word]
             .as_array()
             .unwrap();
-        let length = possible_translations.len();
-        let random = rand::thread_rng().gen_range(0..length);
+        let random = get_random_index(&possible_translations);
 
         let translated_word = possible_translations[random]
             .as_str()
@@ -237,4 +235,105 @@ fn add_interlude(word_to_add_to: &str, translation: &Value) -> String {
         );
 
         word_with_interlude
+}
+
+#[cfg(test)]
+mod tests {
+    mod translate_word {
+        use super::super::*;
+        #[test]
+        fn test_ignore_word() {
+            let translation = serde_json::from_str("{\"ignored\": [\"whatever\"], \"translations\": { \"whatever\": [\"something\"]}}").unwrap();
+
+            assert_eq!(translate_word("whatever", &translation), "whatever");
+        }
+
+        #[test]
+        fn test_translate_word() {
+            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}}").unwrap();
+
+            assert_eq!(translate_word("whatever", &translation), "something");
+        }
+    }
+
+    mod twist_chars {
+        use crate::twist_chars;
+
+        #[test]
+        fn test_twist_chars() {
+            let translation = serde_json::from_str("{\"twistedChars\": {\"ck\": \"gg\"}}").unwrap();
+
+            assert_eq!(twist_chars("wicked", &translation), "wigged");
+        }
+    }
+
+    mod twist_en {
+        use crate::twist_en;
+
+        #[test]
+        fn test_twist_en_end_of_word() {
+            let translation = serde_json::from_str("{\"en\": {\"en!\": \"ne!\"}, \"ignored\": []}").unwrap();
+
+            assert_eq!(twist_en("laufen!", &translation), "laufne!");
+        }
+
+        #[test]
+        fn test_twist_en_ignore_char_within() {
+            let translation = serde_json::from_str("{\"en\": {\"en\": \"ne\"}, \"ignored\": []}").unwrap();
+
+            assert_eq!(twist_en("denken", &translation), "denkne");
+        }
+
+        #[test]
+        fn test_twist_en_ignore_word_completely() {
+            let translation = serde_json::from_str("{\"en\": {\"en\": \"ne\"}, \"ignored\": [\"denken\"]}").unwrap();
+
+            assert_eq!(twist_en("denken", &translation), "denken");
+        }
+    }
+
+    mod translate_punctuation {
+        use crate::translate_punctuation;
+
+        #[test]
+        fn translate_punctuation_dot() {
+            let translation = serde_json::from_str("{\"dot\": [\" dot suffix.\"]}").unwrap();
+
+            assert_eq!(translate_punctuation(".", &translation), " dot suffix.");
+        }
+
+        #[test]
+        fn translation_punctuation_exclamation_mark() {
+            let translation = serde_json::from_str("{\"exclamationMark\": [\" exclamation mark suffix!\"]}").unwrap();
+
+            assert_eq!(translate_punctuation("!", &translation), " exclamation mark suffix!");
+        }
+
+        #[test]
+        fn translate_punctuation_question_mark() {
+            let translation = serde_json::from_str("{\"questionMark\": [\" question mark suffix?\"]}").unwrap();
+
+            assert_eq!(translate_punctuation("?", &translation), " question mark suffix?");
+        }
+
+        #[test]
+        fn translate_punctuation_return_anything_else() {
+            let translation = serde_json::from_str("{}").unwrap();
+
+            assert_eq!(translate_punctuation("~", &translation), "~");
+        }
+    }
+
+    mod translate_quotation_marks {
+        use crate::translate_quotation_marks;
+
+        #[test]
+        fn test_translate_quotation_marks() {
+            let translation = serde_json::from_str("{\"quotationMark\":\"I cite: \\\"\"}").unwrap();
+
+            assert_eq!(translate_quotation_marks("\"word\"", &translation), "I cite: \"word\"");
+        }
+
+    }
+    
 }
