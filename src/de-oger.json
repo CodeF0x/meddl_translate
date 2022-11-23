@@ -235,7 +235,7 @@
     "penis": ["Speer", "Pimml", "Späher", "pensi"],
     "Katana": ["Blechklinge", "hamstori hanser schwerd"],
     "katana": ["Blechklinge", "hamstori hanser schwerd"],
-    "sagst": ["sachste"],
+    "sagst": ["sachst"],
     "programmieren": ["HDML proggrammiert", "in Gimb nei speichern"],
     "sauer": ["mett"],
     "Kumpel": ["Gumbl"],
@@ -540,7 +540,6 @@
     "Mund": ["Schlund"],
     "hart": ["hadd"],
     "harte": ["hadde"],
-    "denn": ["den"],
     "T-Shirt": ["Shört"],
     "T-Shirts": ["Shörter"],
     "Shirt": ["Shört"],
@@ -586,10 +585,9 @@
     "deren": ["derna", "deren erna", "derra", "deren"],
     "gegen": ["gecha", "gecher"],
     "Situation": ["inderessande ẞidduadsion", "ẞidduadsion"],
-    "Schwachsinn": ["Gschmarre"],
     "ist": ["isd", "is'"],
     "denn": ["den"],
-    "Denn": ["Denn"],
+    "Denn": ["Den"],
     "das": ["das", "des"]
   },
   "questionMark": [" Oda wat?", " Hä?", " und weida?", "?", "?"],
@@ -668,8 +666,5 @@
     "ien": "ien",
     "nen": "nene"
   },
-  "ignored": [
-    "kann",
-    "den"
-  ]
+  "ignored": []
 }

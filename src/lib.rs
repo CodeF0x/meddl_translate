@@ -115,10 +115,10 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
             .unwrap_or(&word);
         word = String::from(translated_word);
     } else {
-        word = twist_chars(&word, &translation);
+        word = twist_en(&word, &translation);
         
     }
-    word = twist_en(&word, translation);
+    word = twist_chars(&word, &translation);
 
     String::from(&word)
 }
@@ -147,11 +147,6 @@ fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
 
 fn twist_en<'a>(word: &'a str, translation: &'a Value) -> String {
     let mut twisted = String::from(word);
-
-    // do antoher check, because in rare cases, a already translated word coming in can form an ignored word
-    if is_ignored_word(&twisted, translation) {
-        return twisted;
-    }
 
     let ens = translation["en"]
         .as_object()
@@ -242,17 +237,24 @@ mod tests {
     mod translate_word {
         use super::super::*;
         #[test]
-        fn test_ignore_word() {
+        fn should_ignore_word() {
             let translation = serde_json::from_str("{\"ignored\": [\"whatever\"], \"translations\": { \"whatever\": [\"something\"]}}").unwrap();
 
             assert_eq!(translate_word("whatever", &translation), "whatever");
         }
 
         #[test]
-        fn test_translate_word() {
-            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}}").unwrap();
+        fn should_translate_word() {
+            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}}").unwrap();
 
             assert_eq!(translate_word("whatever", &translation), "something");
+        }
+
+        #[test]
+        fn should_translate_nn_correctly() {
+            let translation = serde_json::from_str("{\"translations\": { \"wenn\": [\"wen\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}}").unwrap();
+
+            assert_eq!(translate_word("wenn", &translation), "wen");
         }
     }
 
@@ -260,7 +262,7 @@ mod tests {
         use crate::twist_chars;
 
         #[test]
-        fn test_twist_chars() {
+        fn should_twist_chars() {
             let translation = serde_json::from_str("{\"twistedChars\": {\"ck\": \"gg\"}}").unwrap();
 
             assert_eq!(twist_chars("wicked", &translation), "wigged");
@@ -271,24 +273,17 @@ mod tests {
         use crate::twist_en;
 
         #[test]
-        fn test_twist_en_end_of_word() {
+        fn should_twist_en_end_of_word() {
             let translation = serde_json::from_str("{\"en\": {\"en!\": \"ne!\"}, \"ignored\": []}").unwrap();
 
             assert_eq!(twist_en("laufen!", &translation), "laufne!");
         }
 
         #[test]
-        fn test_twist_en_ignore_char_within() {
+        fn should_twist_en_ignore_char_within() {
             let translation = serde_json::from_str("{\"en\": {\"en\": \"ne\"}, \"ignored\": []}").unwrap();
 
             assert_eq!(twist_en("denken", &translation), "denkne");
-        }
-
-        #[test]
-        fn test_twist_en_ignore_word_completely() {
-            let translation = serde_json::from_str("{\"en\": {\"en\": \"ne\"}, \"ignored\": [\"denken\"]}").unwrap();
-
-            assert_eq!(twist_en("denken", &translation), "denken");
         }
     }
 
@@ -296,28 +291,28 @@ mod tests {
         use crate::translate_punctuation;
 
         #[test]
-        fn translate_punctuation_dot() {
+        fn should_translate_punctuation_dot() {
             let translation = serde_json::from_str("{\"dot\": [\" dot suffix.\"]}").unwrap();
 
             assert_eq!(translate_punctuation(".", &translation), " dot suffix.");
         }
 
         #[test]
-        fn translation_punctuation_exclamation_mark() {
+        fn should_translation_punctuation_exclamation_mark() {
             let translation = serde_json::from_str("{\"exclamationMark\": [\" exclamation mark suffix!\"]}").unwrap();
 
             assert_eq!(translate_punctuation("!", &translation), " exclamation mark suffix!");
         }
 
         #[test]
-        fn translate_punctuation_question_mark() {
+        fn should_translate_punctuation_question_mark() {
             let translation = serde_json::from_str("{\"questionMark\": [\" question mark suffix?\"]}").unwrap();
 
             assert_eq!(translate_punctuation("?", &translation), " question mark suffix?");
         }
 
         #[test]
-        fn translate_punctuation_return_anything_else() {
+        fn should_translate_punctuation_return_anything_else() {
             let translation = serde_json::from_str("{}").unwrap();
 
             assert_eq!(translate_punctuation("~", &translation), "~");
@@ -328,7 +323,7 @@ mod tests {
         use crate::translate_quotation_marks;
 
         #[test]
-        fn test_translate_quotation_marks() {
+        fn should_translate_quotation_marks() {
             let translation = serde_json::from_str("{\"quotationMark\":\"I cite: \\\"\"}").unwrap();
 
             assert_eq!(translate_quotation_marks("\"word\"", &translation), "I cite: \"word\"");
