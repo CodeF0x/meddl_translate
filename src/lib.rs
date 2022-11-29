@@ -91,10 +91,10 @@ pub fn translate(original: &str) -> String {
 
         meddl.push_str(&translated_word);
         meddl.push_str(&translated_punctuation);
-        meddl.push(' ');
+        meddl.push_str(" ");
     }
 
-    meddl
+    String::from(meddl.trim())
 }
 
 fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
@@ -120,29 +120,37 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
     }
     word = twist_chars(&word, &translation);
 
-    String::from(&word)
+    word
 }
 
 fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
     let twisted_chars = translation["twistedChars"]
-    .as_object()
-    .unwrap();
+        .as_object()
+        .unwrap();
+    let is_noun = word
+        .chars()
+        .collect::<Vec<char>>()[0]
+        .is_uppercase();
+    let mut translated_word = String::from(word).to_lowercase();
 
-    for (_key, array) in twisted_chars.iter().enumerate() {
-        let key = array.0;
-        if word.contains(key) {
-            let translated_word = word
-                .replace(key, array.1
+    for (_key, pair) in twisted_chars.iter().enumerate() {
+        let key = pair.0.to_lowercase();
+        if translated_word.contains(&key) {
+            translated_word = translated_word
+                .replace(&key, pair.1
                     .as_str()
-                    .unwrap(),
+                    .unwrap()
+                    .to_lowercase()
+                    .as_str(),
                 );
-
-
-            return translated_word;
         }
     }
 
-    String::from(word)
+    if is_noun {
+        return translated_word[0..1].to_uppercase() + &translated_word[1..];
+    }
+
+    translated_word
 }
 
 fn twist_en<'a>(word: &'a str, translation: &'a Value) -> String {
@@ -234,6 +242,15 @@ fn add_interlude(word_to_add_to: &str, translation: &Value) -> String {
 
 #[cfg(test)]
 mod tests {
+    mod translate {
+        use crate::translate;
+
+        #[test]
+        fn should_translate_everything() {
+            assert_eq!(translate("Der Meddltranslator wurde in Rust programmiert"), "Der Meddldranslador wurde in Rusd brogrammierd");
+        }
+    }
+
     mod translate_word {
         use super::super::*;
         #[test]
@@ -241,6 +258,13 @@ mod tests {
             let translation = serde_json::from_str("{\"ignored\": [\"whatever\"], \"translations\": { \"whatever\": [\"something\"]}}").unwrap();
 
             assert_eq!(translate_word("whatever", &translation), "whatever");
+        }
+
+        #[test]
+        fn should_ignore_upper_case_word() {
+            let translation = serde_json::from_str("{\"ignored\": [\"den\"], \"translations\": { \"Den\": [\"something\"]}}").unwrap();
+
+            assert_eq!(translate_word("Den", &translation), "Den");
         }
 
         #[test]
@@ -259,6 +283,7 @@ mod tests {
     }
 
     mod twist_chars {
+        use serde_json::Value;
         use crate::twist_chars;
 
         #[test]
@@ -266,6 +291,13 @@ mod tests {
             let translation = serde_json::from_str("{\"twistedChars\": {\"ck\": \"gg\"}}").unwrap();
 
             assert_eq!(twist_chars("wicked", &translation), "wigged");
+        }
+
+        #[test]
+        fn should_twist_multiple_chars() {
+            let translation: Value = serde_json::from_str("{\"twistedChars\": {\"z\": \"ds\", \"p\": \"b\"}}").unwrap();
+
+            assert_eq!(twist_chars("Pommespanzer", &translation), "Bommesbandser");
         }
     }
 
