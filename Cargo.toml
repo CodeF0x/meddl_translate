@@ -1,6 +1,6 @@
 [package]
 name = "meddl_translate"
-version = "0.4.0"
+version = "1.0.0"
 edition = "2018"
 
 description = "Translate German to Meddlfrängisch."
