@@ -23,6 +23,23 @@ pub(crate) fn get_random_index(vec: &Vec<Value>) -> usize {
     rand::thread_rng().gen_range(0..len)
 }
 
+pub(crate) fn capitalize_word(word: &str) -> String {
+    let mut chars = word.chars();
+    let capitalized: String = chars
+        .next()
+        .unwrap()
+        .to_uppercase()
+        .collect::<Vec<char>>()
+        .iter()
+        .collect();
+    let index = match &capitalized.len() {
+        1 => 1,
+        2 => 2,
+        _ => 1
+    };
+    return capitalized + word.split_at(index).1;
+}
+
 #[cfg(feature = "interlude")]
 pub(crate) fn is_one_percent_chance() -> bool {
     let random = rand::thread_rng().gen_range(0..100);
@@ -32,4 +49,26 @@ pub(crate) fn is_one_percent_chance() -> bool {
     }
 
     false
+}
+
+#[cfg(test)]
+mod tests {
+    mod capitalize_word {
+        use crate::util::capitalize_word;
+
+        #[test]
+        fn should_capitalize_umlaut_correctly() {
+            assert_eq!(capitalize_word("österreich"), "Österreich");
+        }
+
+        #[test]
+        fn should_capitalize_another_umlaut_correctly() {
+            assert_eq!(capitalize_word("ätzend"), "Ätzend");
+        }
+
+        #[test]
+        fn should_capitalize_correctly() {
+            assert_eq!(capitalize_word("doppelhaushälfte"), "Doppelhaushälfte");
+        }
+    }
 }

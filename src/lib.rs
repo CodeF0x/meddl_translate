@@ -44,9 +44,9 @@ mod util;
 use serde_json::Value;
 use regex::{Regex};
 #[cfg(feature = "interlude")]
-use util::{is_ignored_word, get_random_index, is_one_percent_chance};
+use util::{is_ignored_word, get_random_index, is_one_percent_chance, capitalize_word};
 #[cfg(not(feature = "interlude"))]
-use util::{is_ignored_word, get_random_index};
+use util::{is_ignored_word, get_random_index, capitalize_word};
 
 fn parse_translation() -> Option<Value> {
     let translation_string = include_str!("de-oger.json");
@@ -147,7 +147,7 @@ fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
     }
 
     if is_noun {
-        return translated_word[0..1].to_uppercase() + &translated_word[1..];
+        return capitalize_word(&translated_word);
     }
 
     translated_word
@@ -298,6 +298,22 @@ mod tests {
             let translation: Value = serde_json::from_str("{\"twistedChars\": {\"z\": \"ds\", \"p\": \"b\"}}").unwrap();
 
             assert_eq!(twist_chars("Pommespanzer", &translation), "Bommesbandser");
+        }
+
+        #[test]
+        fn should_capitalize_umlaut() {
+            // no translation, just want to test umlauts
+            let translation: Value = serde_json::from_str("{\"twistedChars\": {}}").unwrap();
+
+            assert_eq!(twist_chars("Österreich", &translation), "Österreich");
+        }
+
+        #[test]
+        fn not_capitalize_umlaut() {
+            // no translation, just want to test umlauts
+            let translation: Value = serde_json::from_str("{\"twistedChars\": {}}").unwrap();
+
+            assert_eq!(twist_chars("ätzend", &translation), "ätzend");
         }
     }
 
