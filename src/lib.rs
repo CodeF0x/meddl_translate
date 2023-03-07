@@ -102,9 +102,8 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
         .chars()
         .collect::<Vec<char>>()[0]
         .is_uppercase();
-    let mut word = word.to_lowercase();
 
-    word = translate_quotation_marks(&word, translation);
+    let mut word = translate_quotation_marks(&word, translation);
 
     if is_ignored_word(&word, &translation) {
         return word;
@@ -124,6 +123,8 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
         word = twist_en(&word, &translation);
         
     }
+
+    word = word.to_lowercase();
 
     word = translate_beginning(&word, &translation);
     word = twist_chars(&word, &translation);
@@ -277,9 +278,9 @@ mod tests {
 
         #[test]
         fn should_translate_word() {
-            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}, \"twistBeginning\": {}}").unwrap();
+            let translation = serde_json::from_str("{\"translations\": { \"Whatever\": [\"Something\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}, \"twistBeginning\": {}}").unwrap();
 
-            assert_eq!(translate_word("whatever", &translation), "something");
+            assert_eq!(translate_word("Whatever", &translation), "Something");
         }
 
         #[test]

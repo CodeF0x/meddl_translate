@@ -1,3 +1,3 @@
 fn main() {
-    println!("{}", meddl_translate::translate("Hallo!"));
+    println!("{}", meddl_translate::translate("Rainer Winkler"));
 }
