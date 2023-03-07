@@ -8,7 +8,6 @@ pub(crate) fn is_ignored_word(word: &str, translation: &Value) -> bool {
 
     let word = serde_json::to_value(
         word
-            .to_lowercase()
     )
         .unwrap();
     if ignored_words.contains(&word) {

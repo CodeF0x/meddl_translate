@@ -251,7 +251,6 @@
     "laufen": ["meddeln"],
     "amen": ["OHNE DREGG ALDER"],
     "so ist es": ["OHNE DREGG ALDER"],
-    "Stock": ["Sdogg"],
     "mal": ["amal"],
     "einmal": ["amal"],
     "Gimp": ["Gimb"],
@@ -623,8 +622,6 @@
     "ph": "f",
     "pa": "boa",
     "ck": "gg",
-    "sp": "schb",
-    "st": "schd",
     "eug ": "euch",
     "t": "d",
     "T": "D",
@@ -635,6 +632,10 @@
     "k": "g",
     "K": "G",
     "z": "ds"
+  },
+  "twistBeginning": {
+    "sp": "schb",
+    "st": "schd"
   },
   "quotationMark": "*ferstellt Stimme:* \"Äh, ",
   "interlude": "ämmmmäääää... *rendert erst mal für 5 bis 10 Sekunden* ...",

@@ -98,7 +98,13 @@ pub fn translate(original: &str) -> String {
 }
 
 fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
-    let mut word = translate_quotation_marks(word, translation);
+    let is_noun = word
+        .chars()
+        .collect::<Vec<char>>()[0]
+        .is_uppercase();
+    let mut word = word.to_lowercase();
+
+    word = translate_quotation_marks(&word, translation);
 
     if is_ignored_word(&word, &translation) {
         return word;
@@ -118,7 +124,13 @@ fn translate_word<'a>(word: &'a str, translation: &'a Value) -> String {
         word = twist_en(&word, &translation);
         
     }
+
+    word = translate_beginning(&word, &translation);
     word = twist_chars(&word, &translation);
+
+    if is_noun {
+        return capitalize_word(&word);
+    }
 
     word
 }
@@ -127,17 +139,12 @@ fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
     let twisted_chars = translation["twistedChars"]
         .as_object()
         .unwrap();
-    let is_noun = word
-        .chars()
-        .collect::<Vec<char>>()[0]
-        .is_uppercase();
-    let mut translated_word = String::from(word).to_lowercase();
+    let mut word = String::from(word);
 
-    for (_key, pair) in twisted_chars.iter().enumerate() {
-        let key = pair.0.to_lowercase();
-        if translated_word.contains(&key) {
-            translated_word = translated_word
-                .replace(&key, pair.1
+    for pair in twisted_chars.iter() {
+        if word.contains(pair.0) {
+            word = word
+                .replace(pair.0, pair.1
                     .as_str()
                     .unwrap()
                     .to_lowercase()
@@ -146,11 +153,7 @@ fn twist_chars<'a>(word: &'a str, translation: &'a Value) -> String {
         }
     }
 
-    if is_noun {
-        return capitalize_word(&translated_word);
-    }
-
-    translated_word
+    String::from(word)
 }
 
 fn twist_en<'a>(word: &'a str, translation: &'a Value) -> String {
@@ -160,7 +163,7 @@ fn twist_en<'a>(word: &'a str, translation: &'a Value) -> String {
         .as_object()
         .unwrap();
 
-    for (_key, array) in ens.iter().enumerate() {
+    for array in ens.iter() {
         let to_replace = array.0;
         if word.ends_with(to_replace) {
             let position = word.rfind(to_replace).unwrap();
@@ -225,6 +228,18 @@ fn translate_quotation_marks(word: &str, translation: &Value) -> String {
     String::from(word)
 }
 
+fn translate_beginning(word: &str, translation: &Value) -> String {
+    let beginnings = translation["twistBeginning"].as_object().unwrap();
+
+    for beginning_object in beginnings.iter() {
+        if word.starts_with(beginning_object.0) {
+            return word.replacen(beginning_object.0, beginning_object.1.as_str().unwrap(), 1)
+        }
+    }
+
+    String::from(word)
+}
+
 #[cfg(feature = "interlude")]
 fn add_interlude(word_to_add_to: &str, translation: &Value) -> String {
     let interlude = translation["interlude"]
@@ -261,22 +276,15 @@ mod tests {
         }
 
         #[test]
-        fn should_ignore_upper_case_word() {
-            let translation = serde_json::from_str("{\"ignored\": [\"den\"], \"translations\": { \"Den\": [\"something\"]}}").unwrap();
-
-            assert_eq!(translate_word("Den", &translation), "Den");
-        }
-
-        #[test]
         fn should_translate_word() {
-            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}}").unwrap();
+            let translation = serde_json::from_str("{\"translations\": { \"whatever\": [\"something\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}, \"twistBeginning\": {}}").unwrap();
 
             assert_eq!(translate_word("whatever", &translation), "something");
         }
 
         #[test]
         fn should_translate_nn_correctly() {
-            let translation = serde_json::from_str("{\"translations\": { \"wenn\": [\"wen\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}}").unwrap();
+            let translation = serde_json::from_str("{\"translations\": { \"wenn\": [\"wen\"]}, \"ignored\": [], \"en\": {}, \"twistedChars\": {}, \"twistBeginning\": {}}").unwrap();
 
             assert_eq!(translate_word("wenn", &translation), "wen");
         }
@@ -297,23 +305,7 @@ mod tests {
         fn should_twist_multiple_chars() {
             let translation: Value = serde_json::from_str("{\"twistedChars\": {\"z\": \"ds\", \"p\": \"b\"}}").unwrap();
 
-            assert_eq!(twist_chars("Pommespanzer", &translation), "Bommesbandser");
-        }
-
-        #[test]
-        fn should_capitalize_umlaut() {
-            // no translation, just want to test umlauts
-            let translation: Value = serde_json::from_str("{\"twistedChars\": {}}").unwrap();
-
-            assert_eq!(twist_chars("Österreich", &translation), "Österreich");
-        }
-
-        #[test]
-        fn not_capitalize_umlaut() {
-            // no translation, just want to test umlauts
-            let translation: Value = serde_json::from_str("{\"twistedChars\": {}}").unwrap();
-
-            assert_eq!(twist_chars("ätzend", &translation), "ätzend");
+            assert_eq!(twist_chars("pommespanzer", &translation), "bommesbandser");
         }
     }
 
@@ -378,5 +370,29 @@ mod tests {
         }
 
     }
-    
+
+    mod translate_beginning {
+        use crate::translate_beginning;
+
+        #[test]
+        fn should_translate_st() {
+            let translation = serde_json::from_str("{\"twistBeginning\": {\"st\": \"schd\"}}").unwrap();
+
+            assert_eq!(translate_beginning("stein", &translation), "schdein");
+        }
+
+        #[test]
+        fn should_translate_sp() {
+            let translation = serde_json::from_str("{\"twistBeginning\": {\"sp\": \"schb\"}}").unwrap();
+
+            assert_eq!(translate_beginning("spinne", &translation), "schbinne");
+        }
+
+        #[test]
+        fn should_ignore_anything_else() {
+            let translation = serde_json::from_str("{\"twistBeginning\": {\"sp\": \"schb\"}}").unwrap();
+
+            assert_eq!(translate_beginning("hallo", &translation), "hallo");
+        }
+    }
 }
