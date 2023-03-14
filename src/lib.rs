@@ -63,6 +63,10 @@ fn parse_translation() -> Option<Value> {
 /// }
 /// ```
 pub fn translate(original: &str) -> String {
+    if original.len() == 0 {
+        return String::from("");
+    }
+
     let words: Vec<&str> = original.split(" ").collect();
     let translation: Value = parse_translation().unwrap();
     let punctuation_regex = Regex::new(r"[.,\\/#!?$%\^&\*;:{}=\-_`~()]").expect("Could not compile punctuation regex.");
@@ -264,6 +268,11 @@ mod tests {
         #[test]
         fn should_translate_everything() {
             assert_eq!(translate("Der Meddltranslator wurde in Rust programmiert"), "Der Meddldranslador wurde in Rusd brogrammierd");
+        }
+
+        #[test]
+        fn should_return_empty_string_on_empty_string_on_input() {
+            assert_eq!(translate(""), "");
         }
     }
 
