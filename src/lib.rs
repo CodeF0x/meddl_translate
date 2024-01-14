@@ -81,7 +81,17 @@ pub fn translate(original: &str) -> String {
         let mut word_no_punctuation = String::new();
         word_no_punctuation.push_str(&cow);
 
-        let translated_punctuation = translate_punctuation(&punctuation, &translation);
+        let translated_punctuation;
+        // edge case where input is e.g. "you & me".
+        // & gets replaced with "", crashing the translate_word function
+        // as "" can't be accessed by [0].
+        if word_no_punctuation.len() == 0 {
+            word_no_punctuation.push_str(words[i]);
+            translated_punctuation = String::from("");
+        } else {
+            translated_punctuation = translate_punctuation(&punctuation, &translation);
+        }
+
 
         #[cfg(feature = "interlude")]
         let mut translated_word = translate_word(&word_no_punctuation, &translation);
@@ -403,6 +413,16 @@ mod tests {
             let translation = serde_json::from_str("{\"twistBeginning\": {\"sp\": \"schb\"}}").unwrap();
 
             assert_eq!(translate_beginning("hallo", &translation), "hallo");
+        }
+    }
+
+    mod edge_cases {
+        use crate::translate;
+
+        #[test]
+        fn should_work_with_single_punctuation() {
+            assert_eq!(translate("."), ".");
+            assert_eq!(translate("you & me"), "you & me");
         }
     }
 }
