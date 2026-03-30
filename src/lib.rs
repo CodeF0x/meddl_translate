@@ -41,6 +41,9 @@
 
 mod util;
 
+#[cfg(target_arch = "wasm32")]
+use wasm_bindgen::prelude::*;
+
 use serde_json::Value;
 use regex::{Regex};
 #[cfg(feature = "interlude")]
@@ -62,6 +65,7 @@ fn parse_translation() -> Option<Value> {
 ///     let meddl_fraengisch = meddl_translate::translate("Hallo Welt");
 /// }
 /// ```
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen)]
 pub fn translate(original: &str) -> String {
     if original.len() == 0 {
         return String::from("");
